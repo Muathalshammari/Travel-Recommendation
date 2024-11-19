@@ -2,12 +2,22 @@ let recommendations = [];
 let pointer = 0;
 
 function parseCSV(data) {
-  const rows = data.split('\n');
-  return rows.slice(1).map((row) => {
-    const [name, address, rating] = row.split(',');
-    return { name: name.trim(), address: address.trim(), rating: parseFloat(rating.trim()) || 0 };
-  });
+  try {
+    const rows = data.split('\n');
+    return rows.slice(1).map((row, index) => {
+      const [name, address, rating] = row.split(',');
+      if (!name || !address || isNaN(parseFloat(rating))) {
+        console.warn(`Skipping invalid row ${index + 2}:`, row);
+        return null; // Skip invalid rows
+      }
+      return { name: name.trim(), address: address.trim(), rating: parseFloat(rating.trim()) || 0 };
+    }).filter(Boolean); // Remove null values
+  } catch (error) {
+    console.error('Error parsing CSV data:', error.message);
+    return [];
+  }
 }
+
 
 function displayRecommendations() {
   const list = document.getElementById('places-list');
@@ -36,14 +46,24 @@ function displayRecommendations() {
 }
 
 function getRecommendations(city, category) {
-  const fileName = `data/${category}_${city}.csv`;
+  const fileName = `data/${category.toLowerCase()}_${city.toLowerCase()}.csv`;
 
   fetch(fileName)
-    .then((res) => res.text())
-    .then((csv) => {
-      recommendations = parseCSV(csv).sort((a, b) => b.rating - a.rating);
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`File not found: ${fileName}`);
+      }
+      return response.text();
+    })
+    .then((csvData) => {
+      console.log(`Fetched data from ${fileName}:`, csvData); // Log raw data for debugging
+      recommendations = parseCSV(csvData).sort((a, b) => b.rating - a.rating); // Sort by rating
       pointer = 0;
       displayRecommendations();
     })
-    .catch((err) => alert(`Error: ${err.message}`));
+    .catch((error) => {
+      console.error('Error fetching recommendations:', error.message);
+      alert(`Error fetching recommendations: ${error.message}`);
+    });
 }
+
