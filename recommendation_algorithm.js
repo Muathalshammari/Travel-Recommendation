@@ -1,41 +1,49 @@
+let recommendations = [];
+let pointer = 0;
+
 function parseCSV(data) {
-  // Parse CSV data into an array of objects
   const rows = data.split('\n');
   return rows.slice(1).map((row) => {
-    const [name, link, reviews] = row.split(',');
-    return { name: name.trim(), link: link.trim(), reviews: parseInt(reviews.trim(), 10) };
+    const [name, address, rating] = row.split(',');
+    return { name: name.trim(), address: address.trim(), rating: parseFloat(rating.trim()) || 0 };
   });
 }
 
+function displayRecommendations() {
+  const list = document.getElementById('places-list');
+  list.innerHTML = '';
+
+  const nextBatch = recommendations.slice(pointer, pointer + 3);
+  pointer += 3;
+
+  if (nextBatch.length === 0) {
+    alert('No more recommendations available.');
+    return;
+  }
+
+  nextBatch.forEach((place) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${place.name}</strong> - ${place.address} - Rating: ${place.rating}`;
+    list.appendChild(li);
+  });
+
+  if (pointer < recommendations.length) {
+    const button = document.createElement('button');
+    button.innerText = 'Show More Recommendations';
+    button.onclick = displayRecommendations;
+    list.appendChild(button);
+  }
+}
+
 function getRecommendations(city, category) {
-  // Construct the file name based on city and category
-  const fileName = `data/${category.toLowerCase()}_${city.toLowerCase()}.csv`;
+  const fileName = `data/${category}_${city}.csv`;
 
-  // Fetch the CSV file
   fetch(fileName)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`File not found: ${fileName}`);
-      }
-      return response.text();
+    .then((res) => res.text())
+    .then((csv) => {
+      recommendations = parseCSV(csv).sort((a, b) => b.rating - a.rating);
+      pointer = 0;
+      displayRecommendations();
     })
-    .then((csvData) => {
-      const places = parseCSV(csvData);
-
-      if (places.length > 0) {
-        // Display the recommendations
-        const list = document.getElementById('places-list');
-        list.innerHTML = ''; // Clear previous results
-        places.forEach((place) => {
-          const li = document.createElement('li');
-          li.innerHTML = `<a href="${place.link}" target="_blank">${place.name}</a> - Reviews: ${place.reviews}`;
-          list.appendChild(li);
-        });
-      } else {
-        alert(`No results found for ${category} in ${city}.`);
-      }
-    })
-    .catch((error) => {
-      alert(`Error loading recommendations: ${error.message}`);
-    });
+    .catch((err) => alert(`Error: ${err.message}`));
 }

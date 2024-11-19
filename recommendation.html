@@ -8,14 +8,12 @@
 </head>
 <body>
   <div class="container">
-    <!-- Logout Button in the Top Right -->
-    <button id="logout-btn" class="logout-btn">Logout</button>
-
     <h1>Recommended Places</h1>
     <ul id="places-list"></ul>
+    <button id="logout-btn" class="logout-btn">Logout</button>
   </div>
 
-  <!-- Chatbot in the Middle Absolute at the Bottom -->
+  <!-- Chatbot -->
   <div id="chatbot">
     <div id="chatbot-header">Chatbot</div>
     <div id="chatbot-messages"></div>
@@ -27,12 +25,5 @@
 
   <script src="recommendation_algorithm.js"></script>
   <script src="chatbot.js"></script>
-  <script>
-    // Logout button functionality
-    document.getElementById('logout-btn').addEventListener('click', function () {
-      sessionStorage.removeItem('loggedInUser'); // Clear session
-      window.location.href = 'index.html'; // Redirect to login page
-    });
-  </script>
 </body>
 </html>

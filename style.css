@@ -1,56 +1,48 @@
-/* General Body Styles */
 body {
   font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
   margin: 0;
   padding: 0;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f9f9f9;
-  position: relative;
+  height: 100vh;
 }
 
-/* Container Styles */
 .container {
-  text-align: center;
-  margin-top: 50px;
+  margin-top: 20px;
   padding: 20px;
-  background-color: #fff;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 600px;
-  position: relative; /* Enable relative positioning for the Logout button */
 }
 
-/* Logout Button Styles */
 .logout-btn {
-  position: absolute; /* Position relative to the container */
+  position: absolute;
   top: 10px;
   right: 10px;
   padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
   border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
 }
 
 .logout-btn:hover {
-  background-color: #0056b3;
+  background: #0056b3;
 }
 
-/* Chatbot Styles */
 #chatbot {
-  position: absolute; /* Absolute positioning for center-bottom placement */
-  bottom: 50px; /* Distance from the bottom of the page */
+  position: fixed;
+  bottom: 30px;
   left: 50%;
-  transform: translateX(-50%); /* Center horizontally */
+  transform: translateX(-50%);
   width: 300px;
-  background-color: #fff;
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   display: flex;
@@ -59,7 +51,7 @@ body {
 }
 
 #chatbot-header {
-  background-color: #007bff;
+  background: #007bff;
   color: white;
   padding: 10px;
   text-align: center;
@@ -68,9 +60,9 @@ body {
 }
 
 #chatbot-messages {
-  padding: 10px;
   height: 200px;
   overflow-y: auto;
+  padding: 10px;
 }
 
 #chatbot-input {
@@ -83,13 +75,9 @@ body {
 }
 
 #send-btn {
-  padding: 10px;
-  border: none;
-  background-color: #007bff;
+  background: #007bff;
   color: white;
+  border: none;
+  padding: 10px;
   cursor: pointer;
-}
-
-#send-btn:hover {
-  background-color: #0056b3;
 }
