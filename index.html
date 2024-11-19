@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Recommender</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="welcome-text">Welcome to Travel Recommender</h1>
+    <form id="auth-form">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit" id="login-btn">Login</button>
+      <button type="button" id="register-btn">Register</button>
+    </form>
+    <p id="auth-message"></p>
+  </div>
+  <div id="lang-toggle">
+    <button id="lang-en">English</button>
+    <button id="lang-ar">العربية</button>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    // Language toggle script (as defined earlier)
+    const langData = fetch('lang.json').then(res => res.json());
+    const elements = {
+      welcome: document.getElementById('welcome-text'),
+      loginBtn: document.getElementById('login-btn'),
+      registerBtn: document.getElementById('register-btn'),
+    };
+
+    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
+    document.getElementById('lang-ar').addEventListener('click', () => setLanguage('ar'));
+
+    function setLanguage(lang) {
+      langData.then(data => {
+        elements.welcome.innerText = data[lang].welcome;
+        elements.loginBtn.innerText = data[lang].login;
+        elements.registerBtn.innerText = data[lang].register;
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+    "en": {
+      "welcome": "Welcome to Travel Recommender",
+      "login": "Login",
+      "register": "Register",
+      "username": "Username",
+      "password": "Password",
+      "recommendations": "Recommended Places",
+      "logout": "Logout",
+      "categories": {
+        "museums": "Museums",
+        "restaurants": "Restaurants",
+        "cafes": "Cafes"
+      }
+    },
+    "ar": {
+      "welcome": "مرحبًا بك في مُوصي السفر",
+      "login": "تسجيل الدخول",
+      "register": "تسجيل",
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "recommendations": "الأماكن الموصى بها",
+      "logout": "تسجيل الخروج",
+      "categories": {
+        "museums": "المتاحف",
+        "restaurants": "المطاعم",
+        "cafes": "المقاهي"
+      }
+    }
+  }
+  

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommendations</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Recommended Places</h1>
+    <ul id="places-list"></ul>
+    <button id="logout-btn">Logout</button>
+  </div>
+  <div id="chatbot">
+    <div id="chatbot-header">Chatbot</div>
+    <div id="chatbot-messages"></div>
+    <div id="chatbot-input">
+      <input type="text" id="chat-input" placeholder="Type a message...">
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+  <script src="recommendation_algorithm.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

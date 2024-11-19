@@ -1,0 +1,28 @@
+{
+  
+    "en": {
+      "responses": [
+        {
+          "keywords": ["hello", "hi", "hey"],
+          "response": "Hello! How can I assist you today?"
+        },
+        {
+          "keywords": ["recommend", "place"],
+          "response": "Check the categories above for the best places!"
+        }
+      ]
+    },
+    "ar": {
+      "responses": [
+        {
+          "keywords": ["مرحبا", "اهلا"],
+          "response": "مرحبًا! كيف يمكنني مساعدتك اليوم؟"
+        },
+        {
+          "keywords": ["أوصي", "مكان"],
+          "response": "تحقق من الفئات أعلاه لأفضل الأماكن!"
+        }
+      ]
+    }
+  }
+  
